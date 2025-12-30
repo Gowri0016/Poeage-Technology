@@ -1,64 +1,99 @@
-import React, { useState } from 'react';
-import { FaBars, FaTimes } from 'react-icons/fa';
-import Logo from '../../assests/Poeage_Logo_1.png';
+import React, { useState } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
+import Logo from "../../assests/Poeage_Logo_1.png";
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  return (
-    <>
-    <header className="bg-white shadow-md sticky top-0 z-50 px-6 py-3">
-      <nav className="flex justify-between items-center">
-        {/* Logo */}
-        <div className="flex items-center gap-2">
-         <a href='/' ><img src={Logo} alt="Poeage Logo" className="w-36" /> </a>
-          <span className="font-[cursive] text-lg text-gray-800">IT Developers</span>
-        </div>
+  const links = [
+    { label: "About Us", href: "/aboutus" },
+    { label: "Case Studies", href: "/case-studies" },
+    { label: "Blog", href: "/blog" },
+    { label: "How It Works", href: "/work" },
+    { label: "Hire", href: "/hire" },
+    { label: "Our Company", href: "/our-company" },
+  ];
 
-        {/* Desktop Nav Links */}
-        <div className="hidden md:flex items-center gap-8">
-          <a href="/aboutus" className="text-gray-700 font-medium hover:text-blue-600 transition">About us</a>
-          <a href="/case-studies" className="text-gray-700 font-medium hover:text-blue-600 transition">Case Studies</a>
-          <a href="/blog" className="text-gray-700 font-medium hover:text-blue-600 transition">Blog</a>
-          <a href="/work" className="text-gray-700 font-medium hover:text-blue-600 transition">How it Works</a>
-          <a href="/hire" className="text-gray-700 font-medium hover:text-blue-600 transition">Hire</a>
-          <a href="/our-company" className="text-gray-700 font-medium hover:text-blue-600 transition">Our Company</a>
+  return (
+    <header className="fixed top-0 left-0 right-0 z-50 w-full bg-white/90 backdrop-blur-xl border-b shadow-sm">
+    <nav className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+        {/* Logo */}
+        <a href="/" className="flex items-center gap-3">
+          <img src={Logo} alt="Poeage Logo" className="w-32" />
+        </a>
+
+        {/* Desktop Menu */}
+        <div className="hidden md:flex items-center gap-10">
+          {links.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              className="relative text-gray-600 hover:text-gray-900 transition font-medium"
+            >
+              {link.label}
+              <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-gray-900 transition-all duration-300 group-hover:w-full"></span>
+            </a>
+          ))}
+
           <a
             href="/quotes"
-            className="px-4 py-2 rounded-md font-medium text-white bg-gradient-to-r from-blue-600 to-cyan-500 hover:opacity-90 transition"
+            className="px-5 py-2 rounded-full border border-gray-900 text-gray-900 font-medium hover:bg-gray-900 hover:text-white transition"
           >
-            Contact us
+            Contact Us
           </a>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Button */}
         <button
           className="md:hidden text-2xl text-gray-700"
-          onClick={() => setMenuOpen(!menuOpen)}
+          onClick={() => setMenuOpen(true)}
         >
-          {menuOpen ? <FaTimes /> : <FaBars />}
+          <FaBars />
         </button>
       </nav>
 
-      {/* Mobile Dropdown */}
+      {/* Overlay */}
       {menuOpen && (
-        <div className="md:hidden flex flex-col gap-4 mt-3 px-4 pb-4 bg-white shadow-md rounded-md">
-          <a href="/aboutus" className="text-gray-700 font-medium hover:text-blue-600 transition">About us</a>
-          <a href="/case-studies" className="text-gray-700 font-medium hover:text-blue-600 transition">Case Studies</a>
-          <a href="/blog" className="text-gray-700 font-medium hover:text-blue-600 transition">Blog</a>
-          <a href="/work" className="text-gray-700 font-medium hover:text-blue-600 transition">How it Works</a>
-          <a href="/hire" className="text-gray-700 font-medium hover:text-blue-600 transition">Hire</a>
-          <a href="/our-company" className="text-gray-700 font-medium hover:text-blue-600 transition">Our Company</a>
+        <div
+          onClick={() => setMenuOpen(false)}
+          className="fixed inset-0 bg-black/40 md:hidden"
+        />
+      )}
+
+      {/* Mobile Drawer */}
+      <div
+        className={`md:hidden fixed top-0 right-0 h-full w-72 bg-white shadow-2xl transition-transform duration-300 ${
+          menuOpen ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        <div className="px-6 py-4 flex justify-between items-center border-b">
+          <img src={Logo} alt="logo" className="w-28" />
+          <FaTimes
+            onClick={() => setMenuOpen(false)}
+            className="text-2xl cursor-pointer"
+          />
+        </div>
+
+        <div className="flex flex-col gap-5 px-6 py-6">
+          {links.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setMenuOpen(false)}
+              className="text-gray-700 text-lg font-medium hover:text-gray-900 transition"
+            >
+              {link.label}
+            </a>
+          ))}
+
           <a
             href="/quotes"
-            className="px-4 py-2 rounded-md font-medium text-white bg-gradient-to-r from-purple-600 to-blue-500 hover:opacity-90 transition text-center"
+            className="mt-6 px-4 py-3 rounded-xl font-semibold text-center text-white bg-gray-900 shadow hover:shadow-lg transition"
           >
-            Contact us
+            Contact Us
           </a>
         </div>
-      )}
+      </div>
     </header>
-    </>
   );
 }
-

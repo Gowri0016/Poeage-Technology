@@ -83,14 +83,7 @@ export default function HomeServicesUnique() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-cyan-100 via-white to-blue-100 min-h-screen flex items-center px-6 md:px-16 overflow-hidden">
-        <motion.div
-          className="absolute top-0 left-0 w-96 h-96 bg-cyan-200 rounded-full blur-[120px] opacity-30 animate-pulse"
-        ></motion.div>
-        <motion.div
-          className="absolute bottom-0 right-0 w-80 h-80 bg-blue-200 rounded-full blur-[100px] opacity-25 animate-pulse"
-        ></motion.div>
-
+      <section className="relative bg-white min-h-screen flex items-center px-6 md:px-16 overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -60 }}

@@ -55,7 +55,7 @@ export default function Blog() {
   return (
     <>
     <Header />
-    <div className="bg-[#f9fbff] py-16 px-6 md:px-12 lg:px-20">
+    <div className="bg-[#f9fbff] mt-6 py-16 px-6 md:px-12 lg:px-20">
       {/* Title */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}

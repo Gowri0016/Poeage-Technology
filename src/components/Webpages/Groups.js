@@ -1,10 +1,17 @@
 import React, { useState } from "react";
-import { motion, AnimatePresence } from 'framer-motion';
-import Sql from '../../assests/MySql.png';
-import Php from '../../assests/PHP.png';
+import { motion, AnimatePresence } from "framer-motion";
+import Sql from "../../assests/MySql.png";
+import Php from "../../assests/PHP.png";
 
 const TechStackUnique = () => {
-  const categories = ["Backend", "Frontend", "Databases", "CMS", "Cloud/Testing", "DevOps"];
+  const categories = [
+    "Backend",
+    "Frontend",
+    "Databases",
+    "CMS",
+    "Cloud/Testing",
+    "DevOps",
+  ];
   const [active, setActive] = useState("Backend");
 
   const techStacks = {
@@ -42,39 +49,47 @@ const TechStackUnique = () => {
 
   const fadeUp = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0 }
+    visible: { opacity: 1, y: 0 },
   };
 
   return (
-    <div className="relative py-20 px-6 md:px-20 bg-white overflow-hidden">
+    <div className="relative py-24 px-6 md:px-20 bg-white overflow-hidden">
+
+      {/* Background floating blobs */}
+      <div className="absolute -top-10 -left-10 w-72 h-72 bg-cyan-200/40 blur-3xl rounded-full" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-300/30 blur-3xl rounded-full" />
 
       <div className="relative z-10 text-center mb-16">
         <motion.h2
           initial="hidden"
           whileInView="visible"
           variants={fadeUp}
-          transition={{ duration: 0.7 }}
-          className="text-4xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600 mb-4"
+          transition={{ duration: 0.6 }}
+          className="text-4xl md:text-5xl font-extrabold text-gray-900"
         >
-          Explore Our Tech Stack
+          Explore Our
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-blue-700">
+            {" "}Tech Stack
+          </span>
         </motion.h2>
-        <p className="text-gray-600 max-w-2xl mx-auto">
-          Discover the technologies powering our innovative solutions, across frontend, backend, and DevOps systems.
+
+        <p className="text-gray-600 max-w-2xl mx-auto mt-3">
+          We carefully choose technologies that ensure performance, reliability, and scalability.
         </p>
       </div>
 
       {/* Category Tabs */}
-      <div className="flex flex-wrap justify-center gap-4 mb-12">
+      <div className="flex flex-wrap justify-center gap-4 mb-14">
         {categories.map((cat) => (
           <motion.button
             key={cat}
             onClick={() => setActive(cat)}
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className={`px-5 py-2 rounded-full font-medium shadow-sm transition-all duration-300 ${
-              active === cat
-                ? 'bg-gradient-to-r from-cyan-400 to-blue-600 text-white shadow-lg'
-                : 'bg-white text-gray-700 border border-gray-200 hover:bg-gradient-to-r hover:from-blue-50 hover:to-cyan-50'
+            className={`px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300
+            ${active === cat
+              ? "bg-gradient-to-r from-cyan-500 to-blue-600 text-white shadow-lg"
+              : "bg-white/70 border border-gray-200 text-gray-700 hover:bg-gray-50"
             }`}
           >
             {cat}
@@ -82,28 +97,41 @@ const TechStackUnique = () => {
         ))}
       </div>
 
-      {/* Animated Tech Cards */}
+      {/* Stagger animation container */}
       <AnimatePresence mode="wait">
         <motion.div
           key={active}
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -30 }}
-          transition={{ duration: 0.6 }}
+          initial="hidden"
+          animate="visible"
+          exit={{ opacity: 0 }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: { staggerChildren: 0.07 },
+            },
+          }}
           className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-8 justify-items-center"
         >
           {techStacks[active].map((tech, idx) => (
             <motion.div
               key={idx}
-              whileHover={{ scale: 1.1, rotate: 1 }}
-              transition={{ type: 'spring', stiffness: 200 }}
-              className="group w-36 h-36 bg-white rounded-2xl shadow-md hover:shadow-2xl border border-gray-100 flex flex-col items-center justify-center relative overflow-hidden"
+              variants={fadeUp}
+              whileHover={{ y: -6 }}
+              className="relative w-36 h-36 p-4 rounded-2xl backdrop-blur-xl bg-white/70 border border-gray-100 shadow-md hover:shadow-2xl transition-all"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-100 to-purple-100 opacity-0 group-hover:opacity-80 transition-opacity duration-300"></div>
-              <div className="w-14 h-14 bg-white rounded-full flex items-center justify-center z-10">
-                <img src={tech.logo} alt={tech.name} className="w-10 h-10 object-contain group-hover:scale-110 transition-transform duration-300" />
+              {/* Glow ring */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-cyan-300/20 to-blue-300/20 opacity-0 group-hover:opacity-100 transition" />
+
+              <div className="flex flex-col items-center justify-center h-full">
+                <img src={tech.logo} alt={tech.name} className="w-12 h-12 object-contain" />
+                <span className="mt-3 text-sm font-semibold text-gray-700">
+                  {tech.name}
+                </span>
               </div>
-              <span className="mt-3 text-sm font-semibold text-gray-700 z-10 group-hover:text-indigo-600 transition-colors duration-300">
+
+              {/* Tooltip */}
+              <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-xs bg-gray-900 text-white px-2 py-1 rounded-lg opacity-0 group-hover:opacity-100 transition whitespace-nowrap">
                 {tech.name}
               </span>
             </motion.div>
