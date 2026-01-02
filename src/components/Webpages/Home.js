@@ -83,7 +83,7 @@ export default function HomeServicesUnique() {
   return (
     <>
       {/* Hero Section */}
-      <section className="relative bg-white min-h-screen flex items-center px-6 md:px-16 overflow-hidden">
+      <section className="relative bg-white min-h-screen flex items-center px-6 md:px-16 overflow-hidden mt-20">
         <div className="relative z-10 max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -60 }}

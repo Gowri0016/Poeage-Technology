@@ -15,29 +15,34 @@ export default function Header() {
   ];
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 w-full bg-white/90 backdrop-blur-xl border-b shadow-sm">
-    <nav className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur border-b">
+      {/* slim gradient accent bar */}
+      <div className="h-1 w-full bg-gradient-to-r from-gray-900 via-gray-600 to-gray-900" />
+
+      <nav className="max-w-7xl mx-auto px-6 py-3 flex justify-between items-center">
         {/* Logo */}
         <a href="/" className="flex items-center gap-3">
           <img src={Logo} alt="Poeage Logo" className="w-32" />
         </a>
 
         {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden md:flex items-center gap-8">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="relative text-gray-600 hover:text-gray-900 transition font-medium"
+              className="group relative text-gray-700 hover:text-black font-medium transition"
             >
               {link.label}
-              <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-gray-900 transition-all duration-300 group-hover:w-full"></span>
+
+              {/* underline animation (fixed) */}
+              <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-black transition-all duration-300 group-hover:w-full" />
             </a>
           ))}
 
           <a
             href="/quotes"
-            className="px-5 py-2 rounded-full border border-gray-900 text-gray-900 font-medium hover:bg-gray-900 hover:text-white transition"
+            className="px-5 py-2 rounded-full border border-black font-medium hover:bg-black hover:text-white transition shadow-sm"
           >
             Contact Us
           </a>
@@ -52,17 +57,17 @@ export default function Header() {
         </button>
       </nav>
 
-      {/* Overlay */}
+      {/* Backdrop */}
       {menuOpen && (
         <div
           onClick={() => setMenuOpen(false)}
-          className="fixed inset-0 bg-black/40 md:hidden"
+          className="fixed inset-0 bg-black/30 md:hidden"
         />
       )}
 
       {/* Mobile Drawer */}
       <div
-        className={`md:hidden fixed top-0 right-0 h-full w-72 bg-white shadow-2xl transition-transform duration-300 ${
+        className={`md:hidden fixed top-0 right-0 h-full w-72 bg-white shadow-xl transition-transform duration-300 ${
           menuOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -74,13 +79,13 @@ export default function Header() {
           />
         </div>
 
-        <div className="flex flex-col gap-5 px-6 py-6">
+        <div className="flex flex-col gap-5 px-6 py-6 bg-white">
           {links.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setMenuOpen(false)}
-              className="text-gray-700 text-lg font-medium hover:text-gray-900 transition"
+              className="text-gray-700 text-lg font-medium hover:text-black transition"
             >
               {link.label}
             </a>
@@ -88,7 +93,7 @@ export default function Header() {
 
           <a
             href="/quotes"
-            className="mt-6 px-4 py-3 rounded-xl font-semibold text-center text-white bg-gray-900 shadow hover:shadow-lg transition"
+            className="mt-6 px-4 py-3 rounded-xl font-semibold text-center text-white bg-black shadow hover:shadow-lg transition"
           >
             Contact Us
           </a>

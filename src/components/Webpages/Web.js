@@ -1,9 +1,15 @@
-import React from 'react';
-import Header from './Header';
-import Footer from './Footer';
-import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { FaLaptopCode, FaMobileAlt, FaPalette, FaCogs, FaRocket } from 'react-icons/fa';
+import React from "react";
+import Header from "./Header";
+import Footer from "./Footer";
+import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
+import {
+  FaLaptopCode,
+  FaMobileAlt,
+  FaPalette,
+  FaCogs,
+  FaRocket,
+} from "react-icons/fa";
 
 export default function Soft() {
   const navigate = useNavigate();
@@ -11,107 +17,140 @@ export default function Soft() {
   const services = [
     {
       icon: <FaLaptopCode />,
-      title: "E-Commerce Development",
-      desc: "Build secure and scalable online stores with seamless checkout experience.",
-      img: "https://admin.wac.co/uploads/What_is_E_commerce_and_What_are_its_Applications_2_d2eb0d4402.jpg"
+      title: "E-Commerce Platforms",
+      desc: "High-conversion online stores with secure payments and lightning-fast performance.",
+      img: "https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&w=900&q=80",
     },
     {
       icon: <FaMobileAlt />,
-      title: "Dynamic Websites",
-      desc: "Interactive websites with dynamic content management and real-time updates.",
-      img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=800&q=80"
+      title: "Dynamic Web Apps",
+      desc: "Real-time content, APIs, dashboards — built for scale and easy updates.",
+      img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80",
     },
     {
       icon: <FaPalette />,
-      title: "Dashboard & Admin Panels",
-      desc: "Powerful dashboards for analytics, reporting and admin management.",
-      img: "https://images.unsplash.com/photo-1556155092-490a1ba16284?auto=format&fit=crop&w=800&q=80"
+      title: "Admin & Analytics",
+      desc: "Powerful control panels with charts, insights, and workflow automation.",
+      img: "https://images.unsplash.com/photo-1620885174261-16e2b0f6c0c9?auto=format&fit=crop&w=900&q=80",
     },
     {
       icon: <FaCogs />,
-      title: "Portfolio Websites",
-      desc: "Creative portfolio websites showcasing projects, services and brand identity.",
-      img: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=800&q=80"
+      title: "Creative Portfolios",
+      desc: "Minimal, elegant, SEO-ready — tailored for brands, creators, and agencies.",
+      img: "https://images.unsplash.com/photo-1531497865144-0464ef8fb9a9?auto=format&fit=crop&w=900&q=80",
     },
     {
       icon: <FaRocket />,
-      title: "Corporate & Business Sites",
-      desc: "Professional business websites with modern designs and high performance.",
-      img: "https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80"
+      title: "Corporate Websites",
+      desc: "Trust-driven designs, optimized for performance, security, and conversions.",
+      img: "https://images.unsplash.com/photo-1542744173-05336fcc7ad4?auto=format&fit=crop&w=900&q=80",
     },
   ];
+
+  const cardVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: (i) => ({
+      opacity: 1,
+      y: 0,
+      transition: { delay: i * 0.12, duration: 0.6 },
+    }),
+  };
 
   return (
     <>
       <Header />
 
-      {/* Hero Section */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1 }}
-        className="text-center py-20 md:py-28 px-6 sm:px-12 lg:px-24 bg-gradient-to-r from-purple-500 to-indigo-500 text-white rounded-b-3xl shadow-lg"
-      >
-        <FaLaptopCode className="w-16 md:w-20 h-16 md:h-20 mx-auto mb-4" />
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 drop-shadow-lg">
-          Web Development Services
-        </h1>
-        <p className="text-sm sm:text-base md:text-lg max-w-3xl mx-auto">
-          Explore our 5 unique web development services including e-commerce, dynamic websites, dashboards, portfolios, and corporate sites.
-        </p>
-        <button
-          onClick={() => navigate('/contact')}
-          className="mt-4 md:mt-6 px-6 md:px-8 py-2 md:py-3 rounded-full text-sm sm:text-base md:text-lg font-semibold text-white bg-black hover:bg-gray-800 shadow-md"
+      {/* HERO */}
+      <section className="relative overflow-hidden bg-gradient-to-br from-indigo-600 via-purple-600 to-fuchsia-600 text-white rounded-b-3xl shadow-xl">
+        <motion.div
+          initial={{ opacity: 0, y: 45 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9 }}
+          className="text-center py-20 px-6 sm:px-12 lg:px-24"
         >
-          Contact Us
-        </button>
-      </motion.div>
+          <FaLaptopCode className="w-16 h-16 md:w-20 md:h-20 mx-auto mb-4 drop-shadow" />
 
-      {/* Services Section */}
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 md:px-8 py-12 md:py-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-        {services.map((service, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 + index * 0.1, duration: 0.6 }}
-            className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition"
+          <h1 className="text-3xl md:text-5xl font-extrabold mb-4 tracking-tight">
+            Modern Web Development — Built for Results
+          </h1>
+
+          <p className="max-w-3xl mx-auto text-sm md:text-lg opacity-90">
+            Faster. Smarter. Conversion-focused websites crafted to grow your business.
+          </p>
+
+          <button
+            onClick={() => navigate("/contact")}
+            className="mt-6 px-8 py-3 rounded-full font-semibold bg-white text-gray-900 hover:bg-gray-200 transition shadow-lg"
           >
-            <img src={service.img} alt={service.title} className="w-full h-48 object-cover" />
+            Talk With Our Team
+          </button>
+        </motion.div>
+
+        {/* subtle gradient rings */}
+        <div className="absolute inset-0 pointer-events-none">
+          <div className="absolute -top-10 -right-10 w-64 h-64 rounded-full bg-white/10 blur-3xl" />
+          <div className="absolute bottom-0 left-0 w-72 h-72 rounded-full bg-black/10 blur-3xl" />
+        </div>
+      </section>
+
+      {/* SERVICES */}
+      <section className="max-w-6xl mx-auto px-5 py-16 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+        {services.map((s, i) => (
+          <motion.div
+            key={s.title}
+            custom={i}
+            variants={cardVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="relative group rounded-2xl bg-white/70 backdrop-blur-xl border border-gray-200 shadow-md hover:shadow-xl transition overflow-hidden"
+          >
+            <div className="absolute inset-0 bg-gradient-to-tr from-purple-500/10 to-indigo-500/10 opacity-0 group-hover:opacity-100 transition" />
+
+            <img
+              src={s.img}
+              alt={s.title}
+              className="w-full h-48 object-cover group-hover:scale-105 transition"
+            />
+
             <div className="p-6">
-              <div className="w-12 h-12 flex items-center justify-center rounded-full bg-purple-100 text-purple-500 text-2xl mb-4">
-                {service.icon}
+              <div className="w-12 h-12 flex items-center justify-center rounded-xl bg-indigo-100 text-indigo-600 text-2xl mb-4">
+                {s.icon}
               </div>
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                {service.title}
+
+              <h3 className="text-lg font-bold text-gray-900 mb-1">
+                {s.title}
               </h3>
-              <p className="text-sm text-gray-600 mb-4">
-                {service.desc}
-              </p>
+
+              <p className="text-sm text-gray-600 mb-5">{s.desc}</p>
+
               <button
-                onClick={() => navigate('/quotes')}
-                className="px-4 py-2 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-indigo-500 hover:to-purple-500 shadow-md"
+                onClick={() => navigate("/quotes")}
+                className="px-4 py-2 rounded-full text-sm font-semibold bg-gradient-to-r from-indigo-500 to-purple-500 text-white hover:from-purple-600 hover:to-indigo-600 shadow"
               >
-                Continue
+                Get a Quote
               </button>
             </div>
           </motion.div>
         ))}
-      </div>
+      </section>
 
-      {/* Call to Action Section */}
-      <div className="bg-gray-100 py-12 md:py-16 text-center px-4 sm:px-6 md:px-8">
-        <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 md:mb-6">
-          Make Your Solution Real
+      {/* CTA */}
+      <section className="text-center bg-gray-100 py-14 px-6">
+        <h2 className="text-3xl font-bold mb-3">
+          Ready to launch something powerful?
         </h2>
+        <p className="text-gray-600 mb-6">
+          We’ll help plan, design, develop — and scale.
+        </p>
+
         <button
-          onClick={() => navigate('/contact')}
-          className="px-6 md:px-8 py-2 md:py-3 rounded-full text-sm sm:text-base md:text-lg font-semibold text-white bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-indigo-600 hover:to-purple-600 shadow-lg"
+          onClick={() => navigate("/contact")}
+          className="px-8 py-3 rounded-full font-semibold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-indigo-700 hover:to-purple-700 shadow-lg"
         >
           Contact Us
         </button>
-      </div>
+      </section>
 
       <Footer />
     </>
