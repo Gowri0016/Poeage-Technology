@@ -157,7 +157,7 @@ export default function HomeServicesUnique() {
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="bg-gradient-to-br from-white via-cyan-50 to-blue-50 border border-cyan-100 rounded-3xl p-10 shadow-md hover:shadow-2xl hover:-translate-y-3 transition-all duration-500 text-center backdrop-blur-md"
+                className="bg-white border border-cyan-100 rounded-3xl p-10 shadow-md hover:shadow-2xl hover:-translate-y-3 transition-all duration-500 text-center backdrop-blur-md"
               >
                 <div className="flex justify-center mb-4">{service.icon}</div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-2">
@@ -173,7 +173,7 @@ export default function HomeServicesUnique() {
       </section>
 
       {/* Zigzag Parallax Info Section */}
-      <section className="py-20 bg-gradient-to-b from-white to-cyan-50 px-6 md:px-10">
+      <section className="py-20 bg-whithe px-6 md:px-10">
         {sections.map((sec, i) => (
           <motion.div
             key={i}

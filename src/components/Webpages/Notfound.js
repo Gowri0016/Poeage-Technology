@@ -13,7 +13,7 @@ export default function NotFound() {
         className="absolute inset-0 w-full h-full object-cover opacity-30"
       />
 
-      {/* Main content */}
+      {/* Main content */} 
       <motion.div
         className="relative z-10 text-center px-6"
         initial={{ opacity: 0, y: 30 }}

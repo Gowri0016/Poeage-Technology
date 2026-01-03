@@ -55,10 +55,6 @@ const TechStackUnique = () => {
   return (
     <div className="relative py-24 px-6 md:px-20 bg-white overflow-hidden">
 
-      {/* Background floating blobs */}
-      <div className="absolute -top-10 -left-10 w-72 h-72 bg-cyan-200/40 blur-3xl rounded-full" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-300/30 blur-3xl rounded-full" />
-
       <div className="relative z-10 text-center mb-16">
         <motion.h2
           initial="hidden"
